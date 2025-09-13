@@ -35,13 +35,14 @@ $pm "${extra_packages[@]}"
 rm -rf ./public ./README.md ./src/assets ./src/App.css
 sed -i "2a\import tailwindcss from '@tailwindcss/vite'" ./vite.config.js
 sed -i 's/react()/react(), tailwindcss()/' ./vite.config.js
-sed -i '5d' index.html
+sed -i 's|svg+xml|x-icon|' ./index.html
+sed -i 's|/vite.svg|https://archlinux.org/favicon.ico|' ./index.html
 echo '@import "tailwindcss";' > ./src/index.css
 
 # Boilerplate code
 cat <<EOF > ./src/App.jsx
 const App = () => {
-  return <h1>isWorking?</h1>;
+  return <h1>working</h1>;
 };
 
 export default App;
