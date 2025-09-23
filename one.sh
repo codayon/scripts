@@ -5,12 +5,12 @@ set -e # exit if any command fails
 if command -v pnpm >/dev/null 2>&1; then
 	pm="pnpm"
 	create_args=(create vite)
-	extra_args=(--template react)
+	extra_args=(--template react --no-interactive)
 	extra_packages=(add tailwindcss @tailwindcss/vite)
 elif command -v npm >/dev/null 2>&1; then
 	pm="npm"
 	create_args=(create vite@latest)
-	extra_args=(-- --template react)
+	extra_args=(-- --template react --no-interactive)
 	extra_packages=(install tailwindcss @tailwindcss/vite)
 else
 	echo "Please install a package manager."
