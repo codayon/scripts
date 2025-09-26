@@ -2,7 +2,12 @@
 
 set -euo pipefail
 
-if command -v pnpm >/dev/null 2>&1; then
+if command -v bun >/dev/null 2>&1; then
+	pm="bun"
+	create_args=(create vite)
+	extra_args=(--template react --no-interactive)
+	extra_packages=(add tailwindcss @tailwindcss/vite)
+elif command -v pnpm >/dev/null 2>&1; then
 	pm="pnpm"
 	create_args=(create vite)
 	extra_args=(--template react --no-interactive)

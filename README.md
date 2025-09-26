@@ -5,7 +5,7 @@ A script to quickly initialize a Vite React project.
 ## Core Features
 
 - [x] Create Vite + React project
-- [x] Detects your package manager (pnpm > yarn > npm)
+- [x] Detects your package manager (bun > pnpm > yarn > npm)
 - [x] Configures Tailwind CSS
 - [x] Cleans up unnecessary files & directories
 - [x] Prepares a minimal App.jsx to get you started
