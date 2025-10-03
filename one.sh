@@ -40,15 +40,38 @@ $pm install
 $pm "${extra_packages[@]}"
 
 rm -rf ./public ./README.md ./src/assets ./src/App.css
-sed -i "2a\import tailwindcss from '@tailwindcss/vite'" ./vite.config.js
-sed -i 's|react()|react(), tailwindcss()|' ./vite.config.js
 sed -i 's|/vite.svg|https://vite.dev/logo.svg|' ./index.html
 echo '@import "tailwindcss";' > ./src/index.css
 
 cat <<EOF > ./src/App.jsx
-const App = () => {
+export default function App() {
   return <h1>working</h1>;
 };
+EOF
 
-export default App;
+cat <<EOF > ./jsconfig.json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  }
+}
+EOF
+
+cat <<EOF > ./vite.config.js
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
+import path from "path";
+
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "src"),
+    },
+  },
+});
 EOF
